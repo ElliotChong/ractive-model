@@ -193,9 +193,9 @@ mdescribe("Ractive adaptor", versions, function (Ractive, version) {
 
   describe('using with deeply-nested cases', function () {
     beforeEach(function () {
-      subchild = new Ractive({ data: { name: "subchild" }});
-      child    = new Ractive({ data: { name: "child" }});
-      parent   = new Ractive({ data: { name: "parent" }});
+      subchild = new Ractive({ data: { name: 'subchild', subchildProperty: 'subchild property' }});
+      child    = new Ractive({ data: { name: 'child', childProperty: 'child property' }});
+      parent   = new Ractive({ data: { name: 'parent', parentProperty: 'parent property' }});
     });
 
     it('catches circular dependencies', function () {
@@ -234,6 +234,12 @@ mdescribe("Ractive adaptor", versions, function (Ractive, version) {
 
         expect(parent.get('child.subchild.enabled')).be.undefined;
         expect(child.get('subchild.enabled')).be.undefined;
+      });
+
+      it('doesn\'t leak data properties on to the Ractive instances', function () {
+        expect(subchild.subchildProperty).be.undefined;
+        expect(child.childProperty).be.undefined;
+        expect(parent.parentProperty).be.undefined;
       });
 
       it('passes root down the chain', function () {
