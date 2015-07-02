@@ -151,22 +151,39 @@ mdescribe("Ractive adaptor", versions, function (Ractive, version) {
       parent.set('child', undefined);
     });
 
-    it('proxies to a child\'s data object, not the instance properties', function () {
-      var template = child.template;
+    it('proxies to a childs data object, not the instance properties', function () {
+      var childTemplate = child.template;
+      var parentTemplate = parent.template;
 
+      var templatePropertyString = 'A property with the name `template`!';
+
+      child.set('data', 'datum');
+      child.set('template', templatePropertyString);
+
+      // Setting a child on to a parent shouldn't try and modify instance-level properties
       parent.set('child', child);
-      parent.set('child.data', 'datum');
 
       expect(child.get('data')).eql('datum');
+      expect(parent.get('child.data')).eql('datum');
+
+      parent.set('child.data', 'other_value');
+      expect(child.get('data')).eql('other_value');
+
+      // Getting a property on a child should access the child's `data`
+      expect(parent.get('child.template')).eql(templatePropertyString);
+
+      expect(child.template).eql(childTemplate);
+      expect(parent.template).eql(parentTemplate);
 
       parent.set('child.template', 'templating');
 
-      expect(child.template).equal(template);
-      expect(child.get('template')).equal('templating');
+      expect(child.template).eql(childTemplate);
+      expect(parent.template).eql(parentTemplate);
+      expect(child.get('template')).eql('templating');
 
-      child.template = "<h1>Hello Test</h1>";
-      expect(child.get('template')).equal('templating');
-      expect(parent.get('child.template')).equal('templating');
+      child.template = '<h1>Hello Test</h1>';
+      expect(parent.get('child.template')).eql('templating');
+      expect(child.get('template')).eql('templating');
     });
   });
 
