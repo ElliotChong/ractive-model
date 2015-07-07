@@ -334,8 +334,13 @@
       if (childKeys == null) {
         return;
       }
-      
-      return childKeys[1];
+
+      // Skip the 1st result and check for a match
+      for (var i = 1, length = childKeys.length; i < length; i++) {
+        if (childKeys[i] != null) {
+          return childKeys[i];
+        }
+      }
     }
 
     /*
