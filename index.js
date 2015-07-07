@@ -31,67 +31,51 @@
   
   var ractiveMethods = {
     add: {
-      modifiesData: true,
       mapAllowed: false
     },
     animate: {
-      modifiesData: true,
       mapAllowed: true
     },
     get: {
-      modifiesData: false,
       mapAllowed: false
     },
     merge: {
-      modifiesData: true,
       mapAllowed: false
     },
     observe: {
-      modifiesData: false,
       mapAllowed: true
     },
     observeOnce: {
-      modifiesData: false,
       mapAllowed: false
     },
     pop: {
-      modifiesData: true,
       mapAllowed: false
     },
     push: {
-      modifiesData: true,
       mapAllowed: false
     },
     set: {
-      modifiesData: true,
       mapAllowed: true
     },
     shift: {
-      modifiesData: true,
       mapAllowed: false
     },
     splice: {
-      modifiesData: true,
       mapAllowed: false
     },
     subtract: {
-      modifiesData: true,
       mapAllowed: false
     },
     toggle: {
-      modifiesData: true,
       mapAllowed: false
     },
     unshift: {
-      modifiesData: true,
       mapAllowed: false
     },
     update: {
-      modifiesData: false,
       mapAllowed: false
     },
     updateModel: {
-      modifiesData: false,
       mapAllowed: false
     }
   };
@@ -204,7 +188,7 @@
     function onChange (updates) {
       each(updates, function (value, key) {
         lock(child._guid + key, function () {
-          parent.set(keypath + '.' + key, value);
+          parent._update(keypath + '.' + key);
         });
       });
     }
@@ -309,10 +293,6 @@
           arguments[0] = arguments[0].replace(childKey + ".", "");
           result = child[method].apply(child, arguments);
 
-          if (config.modifiesData === true) {
-            parent._update(childKey + "." + arguments[0]);
-          }
-
           return result;
         }
 
@@ -332,10 +312,6 @@
             // Remove the root of the key before marshalling it to the child
             key = key.replace(childKey + ".", "");
             child[method].call(child, key, value);
-
-            if (config.modifiesData === true) {
-              parent._update(childKey + "." + key);
-            }
           });
         }
 
