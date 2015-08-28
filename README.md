@@ -1,11 +1,10 @@
-# ractive-ractive
+# ractive-model
 
-Experimental ractive adaptor for ractive objects. This makes it possible to use 
-template-less Ractive objects as models.
+A Ractive adaptor for ractive data objects. This makes it possible to use template-less Ractive objects as models.
+
+Ractive-Model is forked from [@rstacruz]'s [ractive-ractive](https://github.com/rstacruz/ractive-ractive) module and takes a wrapper-based approach to nesting Ractive models rather than applying the child data properties directly on the parent.
 
 *Find more Ractive.js plugins at [docs.ractivejs.org/latest/plugins](http://docs.ractivejs.org/latest/plugins)*
-
-[![Status](http://img.shields.io/travis/rstacruz/ractive-ractive/master.svg?style=flat)](https://travis-ci.org/rstacruz/ractive-ractive "See test builds")
 
 <br>
 
@@ -80,16 +79,16 @@ parent.set('x', undefined);
 
 ## Usage
 
-ractive-ractive is available via npm.
+ractive-model is available via npm.
 
-    $ npm install --save ractive-ractive
+    $ npm install --save ractive-model
 
-[![npm version](http://img.shields.io/npm/v/ractive-ractive.svg?style=flat)](https://npmjs.org/package/ractive-ractive "View this project on npm")
+[![npm version](http://img.shields.io/npm/v/ractive-model.svg?style=flat)](https://npmjs.org/package/ractive-model "View this project on npm")
 
 Require the module to use. No need to consume the return value.
 
 ```js
-require('ractive-ractive')
+require('ractive-model')
 ```
 
 <br>
@@ -98,19 +97,21 @@ require('ractive-ractive')
 
 Hat tip to the original Ractive adaptor from [@Rich-Harris].
 ([src](https://github.com/Rich-Harris/Ractive-plugins/blob/master/adaptors/Ractive.js))
+Kudos for the original `ractive-ractive` from [@rstacruz].
+([src](https://github.com/rstacruz/ractive-ractive))
 
 <br>
 
 ## Thanks
 
+**ractive-model** © 2015+, Elliot Chong. Released under the [MIT] License.<br>
 **ractive-ractive** © 2014+, Rico Sta. Cruz. Released under the [MIT] License.<br>
-Authored and maintained by Rico Sta. Cruz with help from contributors ([list][contributors]).
+Authored and maintained by Elliot Chong with help from contributors ([list][contributors]).
 
-> [ricostacruz.com](http://ricostacruz.com) &nbsp;&middot;&nbsp;
-> GitHub [@rstacruz](https://github.com/rstacruz) &nbsp;&middot;&nbsp;
-> Twitter [@rstacruz](https://twitter.com/rstacruz)
+> GitHub [@ElliotChong](https://github.com/ElliotChong) &nbsp;&middot;&nbsp;
+> Twitter [@ElliotChong](https://twitter.com/ElliotChong)
 
 [MIT]: http://mit-license.org/
-[contributors]: http://github.com/rstacruz/ractive-ractive/contributors
-[ractive#1249]: https://github.com/ractivejs/ractive/issues/1249 
+[contributors]: http://github.com/ElliotChong/ractive-model/contributors
+[ractive#1249]: https://github.com/ractivejs/ractive/issues/1249
 [@Rich-Harris]: https://github.com/Rich-Harris
