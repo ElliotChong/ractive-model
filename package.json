@@ -12,7 +12,7 @@
   },
   "author": "Elliot Chong <code+ractive-model@elliotjameschong.com>",
   "contributors": [
-    "Rico Sta. Cruz <hi@ricostacruz.com>",
+    "Rico Sta. Cruz <hi@ricostacruz.com>"
   ],
   "license": "MIT",
   "peerDependencies": {
